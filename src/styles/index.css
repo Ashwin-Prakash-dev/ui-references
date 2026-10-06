@@ -1,0 +1,51 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "dither-plugin";
+
+/* Vendored library styles (scripts/vendor_css.py). Later files win for shared tokens: shadcn goes last. */
+@import "./vendor/uilayouts-token.css";
+@import "./vendor/uilayouts.css";
+@import "./vendor/cult-ui.css";
+@import "./vendor/magicui.css";
+@import "./vendor/shadcn.css";
+
+@plugin "@tailwindcss/typography";
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+@custom-variant fixed (&:is(.layout-fixed *));
+
+/* The libraries' class names live outside this project: scan their source too. */
+@source "../../../magicui/apps/www/registry";
+@source "../../../magicui/apps/www/components";
+@source "../../../cult-ui/apps/www/registry";
+@source "../../../cult-ui/apps/www/components";
+@source "../../../uilayouts/apps/ui-layout/registry";
+@source "../../../uilayouts/apps/ui-layout/components";
+@source "../../../uilayouts/packages/blocks/src";
+@source "../../../uilayouts/packages/ui/src";
+@source "../../../uilayouts/packages/shadcn/src";
+@source "../../../Shadcnui/apps/v4/registry/new-york-v4";
+
+/* ---------- Gallery chrome (uses the same shadcn tokens, so it follows the light/dark toggle) ---------- */
+html { scroll-padding-top: 8rem; }
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* A preview stage: transform + contain make position:fixed demos (cursors, progress bars, docks)
+   attach to the card instead of the page, and keep each demo's paint inside its box. */
+.stage {
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  contain: layout paint;
+  isolation: isolate;
+}
+
+.code-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+.code-scroll::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--foreground) 18%, transparent); border-radius: 4px; }

@@ -1,0 +1,5 @@
+dither-plugin
+tw-animate-css
+shadcn/tailwind.css
+@plugin "@tailwindcss/typography";
+@plugin "tailwindcss-animate";

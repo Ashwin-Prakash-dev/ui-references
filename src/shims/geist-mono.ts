@@ -1,0 +1,1 @@
+export { GeistMono } from "./next"

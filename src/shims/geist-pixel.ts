@@ -1,0 +1,1 @@
+export { GeistPixelSquare } from "./next"
